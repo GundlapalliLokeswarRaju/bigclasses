@@ -2,7 +2,9 @@
 FROM node:18 AS build
 WORKDIR /app
 COPY . .
-RUN npm install && npm run build
+RUN npm install
+RUN chmod +x node_modules/.bin/vite
+RUN npm run build
 
 # Production stage
 FROM nginx:alpine
