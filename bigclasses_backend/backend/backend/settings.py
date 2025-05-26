@@ -53,12 +53,16 @@ MIDDLEWARE = [
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
+    "https://bigclasses.ai",
+    "https://www.bigclasses.ai",
     "http://13.201.139.142:3000",  # or wherever your React app runs
 ]
 
 CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = [
+    "https://bigclasses.ai",
+    "https://www.bigclasses.ai",
     "http://13.201.139.142:3000",
 ]
 
