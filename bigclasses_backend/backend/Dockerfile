@@ -1,11 +1,11 @@
 FROM python:3.10-slim
 
 # Set environment variables
-ENV VIRTUAL_ENV=myvenv
-ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+# ENV VIRTUAL_ENV=myvenv
+# ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-# Create a virtual environment
-RUN python -m venv $VIRTUAL_ENV
+# # Create a virtual environment
+# RUN python -m venv $VIRTUAL_ENV
 
 # Set working directory
 WORKDIR /app
