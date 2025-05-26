@@ -23,7 +23,7 @@ SECRET_KEY = 'django-insecure--a3hg3b78#qfw!a4=n5ip9c#^@)pn28#v6t44s!*9gbuioxb*n
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 
@@ -53,13 +53,13 @@ MIDDLEWARE = [
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8080",  # or wherever your React app runs
+    "http://13.201.139.142:8080",  # or wherever your React app runs
 ]
 
 CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:8080",
+    "http://13.201.139.142:8080",
 ]
 
 ROOT_URLCONF = 'backend.urls'
