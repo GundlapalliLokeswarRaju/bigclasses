@@ -53,13 +53,13 @@ MIDDLEWARE = [
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
-    "http://13.201.139.142:8080",  # or wherever your React app runs
+    "http://13.201.139.142:3000",  # or wherever your React app runs
 ]
 
 CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = [
-    "http://13.201.139.142:8080",
+    "http://13.201.139.142:3000",
 ]
 
 ROOT_URLCONF = 'backend.urls'
