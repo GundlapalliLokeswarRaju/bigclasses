@@ -15,10 +15,13 @@ class EnrollmentView(APIView):
             required_fields = ['student_name', 'email', 'course_title', 'phone']
             if not all(field in request.data for field in required_fields):
                 return Response({'error': 'Missing required fields'}, status=status.HTTP_400_BAD_REQUEST)
-                media_root = os.path.join(settings.BASE_DIR, 'media')
-                enrollments_dir = os.path.join(media_root, 'enrollments')
-                file_path = os.path.join(enrollments_dir, 'enrollments.xlsx')
-                os.makedirs(enrollments_dir, exist_ok=True)
+
+            # Always define these variables
+            media_root = os.path.join(settings.BASE_DIR, 'media')
+            enrollments_dir = os.path.join(media_root, 'enrollments')
+            file_path = os.path.join(enrollments_dir, 'enrollments.xlsx')
+            os.makedirs(enrollments_dir, exist_ok=True)
+
             try:
                 wb = load_workbook(file_path) if os.path.exists(file_path) else Workbook()
                 ws = wb.active
@@ -51,18 +54,18 @@ class EnrollmentView(APIView):
 
                 wb.save(file_path)
                 wb.close()
-
-                return Response({
-                    'message': 'Enrollment successful',
                     'data': dict(zip(self.EXCEL_HEADERS, enrollment_data))
                 }, status=status.HTTP_201_CREATED)
-
-            except Exception as e:
+                    'message': 'Enrollment successful',
+            except Exception as e:ip(self.EXCEL_HEADERS, enrollment_data))
                 logger.error(f"Excel handling error: {str(e)}")
                 raise
-
-        except Exception as e:
+            except Exception as e:
+        except Exception as e:"Excel handling error: {str(e)}")
             logger.error(f"Enrollment error: {str(e)}")
+            return Response({
+                'error': f'Enrollment failed: {str(e)}'
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
             return Response({
                 'error': f'Enrollment failed: {str(e)}'
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
