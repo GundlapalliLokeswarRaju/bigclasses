@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
     proxy: {
       '/api': {
-        target: 'http://13.201.139.142:8000',
+        target: 'https://bigclasses.ai',
         changeOrigin: true,
         secure: false,
       }
