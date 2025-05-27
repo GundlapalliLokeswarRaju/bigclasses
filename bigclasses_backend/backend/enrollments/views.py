@@ -15,10 +15,10 @@ class EnrollmentView(APIView):
             required_fields = ['student_name', 'email', 'course_title', 'phone']
             if not all(field in request.data for field in required_fields):
                 return Response({'error': 'Missing required fields'}, status=status.HTTP_400_BAD_REQUEST)
-                media_root = os.path.join(settings.BASE_DIR, 'media')
-                enrollments_dir = os.path.join(media_root, 'enrollments')
-                file_path = os.path.join(enrollments_dir, 'enrollments.xlsx')
-                os.makedirs(enrollments_dir, exist_ok=True)
+            media_root = os.path.join(settings.BASE_DIR, 'media')
+            enrollments_dir = os.path.join(media_root, 'enrollments')
+            file_path = os.path.join(enrollments_dir, 'enrollments.xlsx')
+            os.makedirs(enrollments_dir, exist_ok=True)
             try:
                 wb = load_workbook(file_path) if os.path.exists(file_path) else Workbook()
                 ws = wb.active
