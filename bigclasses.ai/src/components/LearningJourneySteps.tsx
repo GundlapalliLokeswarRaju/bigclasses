@@ -10,7 +10,7 @@ const LearningJourneySteps = () => {
       <div className="max-w-4xl mx-auto text-center flex flex-col items-center"> 
         {/* Heading */}
         <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-12 inline-block mx-auto px-4">
-          India’s Leading Tech Training Hub
+          AI Training Hub
         </h2>
 
         {/* Animations */}
