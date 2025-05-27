@@ -79,7 +79,7 @@ export const courses = [
   {
     id: 7,
     title: "LangGraph",
-    description: "Create powerful AI workflows with LangGraph’s graph-based programming paradigm.",
+    description: "Create powerful AI workflows with LangGraph's graph-based programming paradigm.",
     image: "https://cdn.prod.website-files.com/6583e2b6af21ee3aa85c3013/671f853754d6970c274a7136_66824dd409fe46033e194223_lang%2520Graph.png",
     students: "1,350",
     duration: "5 weeks",
@@ -130,6 +130,17 @@ export const courses = [
     level: "Beginner",
     rating: 4.8,
     modules: 8,
+  },
+  {
+    id: 12,
+    title: "Data Analytics",
+    description: "Master data analysis techniques, statistical methods, and visualization tools to extract insights from data.",
+    image: "https://media.istockphoto.com/id/1357365823/photo/big-data-technology-and-data-science-illustration-data-flow-concept-querying-analysing.jpg?s=612x612&w=0&k=20&c=JBqzSrRU34m1I3f1lUrTXmWG2BcCesDoTdFXkE2lJYs=",
+    students: "2,750",
+    duration: "8 weeks",
+    level: "Beginner",
+    rating: 4.7,
+    modules: 12,
   }
 ];
 
