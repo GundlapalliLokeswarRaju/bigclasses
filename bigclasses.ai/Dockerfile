@@ -2,6 +2,7 @@
 FROM node:18 AS build
 WORKDIR /app
 COPY . .
+ENV NODE_ENV=development
 RUN npm install && npm run build
 
 # Production stage

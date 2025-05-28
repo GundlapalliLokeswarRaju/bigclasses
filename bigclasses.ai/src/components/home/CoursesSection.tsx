@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
+import { useNavigate } from "react-router-dom";
 import {
   Users,
   Clock,
   Star,
   BookOpen,
 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 
 export const courses = [
   {
@@ -135,7 +135,7 @@ export const courses = [
     id: 12,
     title: "Data Analytics",
     description: "Master data analysis techniques, statistical methods, and visualization tools to extract insights from data.",
-    image: "https://media.istockphoto.com/id/1357365823/photo/big-data-technology-and-data-science-illustration-data-flow-concept-querying-analysing.jpg?s=612x612&w=0&k=20&c=JBqzSrRU34m1I3f1lUrTXmWG2BcCesDoTdFXkE2lJYs=",
+    image: "https://i.pinimg.com/736x/43/8e/c0/438ec085495d683eaa3a6a10260ae1cb.jpg",
     students: "2,750",
     duration: "8 weeks",
     level: "Beginner",
