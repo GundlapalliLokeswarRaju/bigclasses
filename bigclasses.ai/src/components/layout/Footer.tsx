@@ -100,7 +100,7 @@ const Footer = () => {
                 <img 
                   src="\lovable-uploads\Big_Classes_LOGO-removebg-preview.webp" 
                   alt="BigClasses.AI Logo" 
-                  className="h-10 w-auto"
+                  className="h-17 w-auto"
                 />
               </div>
             </div>
