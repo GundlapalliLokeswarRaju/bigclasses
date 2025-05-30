@@ -26,10 +26,14 @@ class ModuleSerializer(serializers.ModelSerializer):
 class CourseDetailSerializer(serializers.ModelSerializer):
     highlights = serializers.SerializerMethodField()
     overview = serializers.SerializerMethodField()
-    curriculum = ModuleSerializer(many=True, read_only=True)  
+    curriculum = ModuleSerializer(many=True, read_only=True)
+    
+    # Add curriculum file information
+    curriculum_file_info = serializers.SerializerMethodField()
+    
     class Meta:
         model = Course
-        fields = ['id', 'title', 'highlights', 'overview', 'curriculum']
+        fields = ['id', 'title', 'highlights', 'overview', 'curriculum', 'curriculum_file_info']
 
     def get_highlights(self, obj):
         try:
@@ -80,8 +84,47 @@ class CourseDetailSerializer(serializers.ModelSerializer):
                 "manager_priority_percentage": "N/A"
             }
 
+    def get_curriculum_file_info(self, obj):
+        """Add curriculum file information to the response"""
+        try:
+            if not obj.curriculum_file:
+                return {
+                    "has_file": False,
+                    "file_name": None,
+                    "file_extension": None,
+                    "download_available": False
+                }
+            
+            # Get file information using model methods
+            file_name = obj.get_curriculum_filename()
+            file_extension = obj.get_file_extension()
+            
+            return {
+                "has_file": True,
+                "file_name": file_name,
+                "file_extension": file_extension,
+                "download_available": True,
+                "download_url": f"/api/courses/{obj.id}/download-curriculum/",
+                "uploaded_at": obj.file_uploaded_at.isoformat() if obj.file_uploaded_at else None
+            }
+        except Exception as e:
+            return {
+                "has_file": False,
+                "file_name": None,
+                "file_extension": None,
+                "download_available": False,
+                "error": "Error retrieving file information"
+            }
+
 class CourseSerializer(serializers.ModelSerializer):
+    # Optional: Add basic file info to list view as well
+    has_curriculum_file = serializers.SerializerMethodField()
+    
     class Meta:
         model = Course
         fields = ['id', 'title', 'description', 'image', 'students_enrolled', 
-                 'duration', 'level', 'rating', 'modules_count']
+                 'duration', 'level', 'rating', 'modules_count', 'has_curriculum_file']
+
+    def get_has_curriculum_file(self, obj):
+        """Simple indicator if course has curriculum file"""
+        return obj.has_curriculum_file

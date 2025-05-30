@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,7 +28,6 @@ DEBUG = True
 ALLOWED_HOSTS = ["*"]
 
 
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,10 +39,11 @@ INSTALLED_APPS = [
     'corsheaders',
     'enrollments',
     'courses',
-    ]
+]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',    'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',    
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -53,14 +55,12 @@ MIDDLEWARE = [
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
-    # "http://13.201.139.142:8080", 
-    "http://localhost:3000", # or wherever your React app runs
+    "http://localhost:3000",  # or wherever your React app runs
 ]
 
 CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = [
-    # "http://13.201.139.142:8080",
     "http://localhost:3000",
 ]
 
@@ -86,8 +86,6 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
-
-
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
@@ -139,6 +137,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# Media files (User uploaded files)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -146,11 +145,32 @@ if not os.path.exists(MEDIA_ROOT):
     os.makedirs(MEDIA_ROOT, exist_ok=True)
     os.chmod(MEDIA_ROOT, 0o777)
 
+# Create curricula directory structure if it doesn't exist
+CURRICULA_DIR = os.path.join(MEDIA_ROOT, 'curricula')
+if not os.path.exists(CURRICULA_DIR):
+    os.makedirs(CURRICULA_DIR, exist_ok=True)
+    os.chmod(CURRICULA_DIR, 0o777)
+
+# Replace with your company admin email
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+load_dotenv()
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = os.getenv('EMAIL_HOST_USER')
+COMPANY_EMAIL = os.getenv('COMPANY_EMAIL')
+
+
+# Logging Configuration
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -178,5 +198,3 @@ LOGGING = {
         }
     }
 }
-
-DEBUG = True

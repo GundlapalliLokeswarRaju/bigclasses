@@ -6,3 +6,5 @@ sqlparse==0.5.3
 tzdata==2025.2
 openpyxl
 djangorestframework-simplejwt
+python-dotenv
+requests
